@@ -1,2 +1,25 @@
 #!/bin/bash
-python3 -m compileal $PYFILE -b
+
+# Check if the correct number of arguments is provided
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <python_file>"
+    exit 1
+fi
+
+PYFILE="$1"  # Get the Python file from the command line argument
+
+# Check if the file exists
+if [ ! -f "$PYFILE" ]; then
+    echo "Error: File not found: $PYFILE"
+    exit 1
+fi
+
+# Compile the Python file using compileall module
+python3 -m compileall "$PYFILE" -b
+
+# Check the exit status of the compileall command
+if [ $? -eq 0 ]; then
+    echo "Compilation successful"
+else
+    echo "Compilation failed"
+fi
