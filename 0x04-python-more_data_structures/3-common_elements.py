@@ -11,4 +11,3 @@ def common_elements(set_1, set_2):
         # Handle type errors and print an error message
         print(f"Error: {e}")
         return None
-
