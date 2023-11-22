@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 
-def safe_print_list_integers(my_list=None, x=0):
-    if my_list is None:
-        my_list = []
+def safe_print_list_integers(my_list=[], x=0):
+    count = 0
 
-        count = 0
-        for i in range(x):
+    for i in range(x):
+        try:
             if isinstance(my_list[i], int):
-                print(f"{my_list[i]}", end="")
+                print("{:d}".format(my_list[i]), end="")
                 count += 1
+        except (TypeError, ValueError):
+            continue
 
-                print()  # Add a new line after printing integers
-                return count
+    print()  # Add a new line after printing integers
+    return count
