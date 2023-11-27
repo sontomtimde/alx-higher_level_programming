@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 
+"""class Rectangle that defines a rectangle by: (based on 0-rectangle.py)
+"""
+
 
 class Rectangle:
-    """A class to represent a rectangle."""
-
+    """ Defines a rectangle with private width and height attributes.
+    """
     def __init__(self, width=0, height=0):
-        self.width = width
-        self.height = height
+        self.__width = width
+        self.__height = height
 
     @property
     def width(self):
@@ -14,7 +17,10 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        self._validate_dimension(value, "width")
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
         self.__width = value
 
     @property
@@ -23,11 +29,8 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        self._validate_dimension(value, "height")
-        self.__height = value
-
-    def _validate_dimension(self, value, dimension_name):
         if not isinstance(value, int):
-            raise TypeError(f"{dimension_name} must be an integer")
+            raise TypeError("height must be an integer")
         if value < 0:
-            raise ValueError(f"{dimension_name} must be >= 0")
+            raise ValueError("height must be >= 0")
+        self.__height = value
