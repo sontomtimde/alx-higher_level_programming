@@ -2,32 +2,18 @@
 """Defining Pascal's Triangle function."""
 
 
-def generate_pascal_triangle(n):
-    """
-    Generate Pascal's Triangle of size n.
-
-    Args:
-    n (int): Size of the Pascal's Triangle to generate.
-
-    Returns:
-    list: Pascal's Triangle as a list of lists.
+def pascal_triangle(n):
+    """To represent the Pascal's Triangle of size n.
     """
     if n <= 0:
         return []
 
-    triangle = [[1]]
-    while len(triangle) < n:
-        row = triangle[-1]
-        next_row = [1]
-        for i in range(len(row) - 1):
-            next_row.append(row[i] + row[i + 1])
-        next_row.append(1)
-        triangle.append(next_row)
-    return triangle
-
-# Example usage:
-if __name__ == "__main__":
-    size = 5
-    pascal_triangle = generate_pascal_triangle(size)
-    for row in pascal_triangle:
-        print(row)
+    triangles = [[1]]
+    while len(triangles) != n:
+        tri = triangles[-1]
+        tmp = [1]
+        for i in range(len(tri) - 1):
+            tmp.append(tri[i] + tri[i + 1])
+        tmp.append(1)
+        triangles.append(tmp)
+    return triangles
